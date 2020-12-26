@@ -16,6 +16,7 @@
       margin-bottom: 0;
       background-color: rgba(0, 0, 0, 0.03);
       border-bottom: none;
+      z-index: 5;
     }
   }
 
@@ -31,7 +32,7 @@
   }
 
   &__form {
-    display: block;
+    // display: block;
     margin: 2rem;
     width: 90%;
     max-width: 500px;
@@ -79,18 +80,36 @@
 
 .login-body,
 .signup-body {
-  position: absolute;
+  position: relative;
   display: block;
-  opacity: 1;
-  z-index: -1;
-  transform: translateY(-100%);
+  padding: 0;
+  overflow: hidden;
+  height: 0;
+  background: inherit;
+}
+
+.login-body {
+  transition: all 0.3s linear;
+}
+
+.signup-body {
+  transition: all 0.5s linear;
 }
 
 .login-radio:checked~.login-body,
 .signup-radio:checked~.signup-body {
-  opacity: 1;
-  z-index: 10;
-  transform: translateY(0%);
+  display: block;
+  padding: 1rem 1rem;
+}
+
+.login-radio:checked~.login-body {
+  height: 278px;
+  transition: all 0.3s linear 0.5s;
+}
+
+.signup-radio:checked~.signup-body {
+  height: 810px;
+  transition: all 0.5s linear 0.3s;
 }
 
 .login-radio:checked~.card-header>.login-tab,
@@ -155,5 +174,31 @@
     background-color: #f77440;
     border-color: #fcdca1;
     box-shadow: 0 0 0 0.25rem #f7744080;
+  }
+}
+
+@keyframes hide {
+  10% {
+    height: auto;
+  }
+
+  50% {
+    height: 40px;
+  }
+
+  90% {
+    height: 0;
+  }
+}
+
+@keyframes show {
+  10% {
+    height: 0;
+  }
+
+  50% {}
+
+  90% {
+    height: auto;
   }
 }
