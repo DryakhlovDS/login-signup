@@ -5,13 +5,9 @@ import axios from '../plugins/axios';
  * @param {string} email 
  * @param {string} password 
  */
-export async function login(email, password) {
+export async function login(data) {
   try {
-    const response = await axios.post(`/auth/login`, JSON.stringify({
-      email,
-      password
-    })
-    );
+    const response = await axios.post(`/auth/login`,JSON.stringify(data) );
 
     return response;
   } catch (error) {

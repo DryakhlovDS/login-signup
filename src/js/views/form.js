@@ -10,9 +10,11 @@ function inputMessageTemplate(msg) {
  * @param {HTMLElement} el 
  */
 export function showInputError(el) {
+  const parent = el.parentElement;
   const msg = el.dataset.invalidMessage || 'Invalid input';
   const template = inputMessageTemplate(msg);
   el.classList.add('is-invalid');
+  parent.style = 'margin-bottom: 0';
   el.insertAdjacentHTML('afterend', template);
 }
 
@@ -26,6 +28,7 @@ export function removeInputError(el){
   if (!err) return;
 
   el.classList.remove('is-invalid');
+  parent.style = '';
   parent.removeChild(err);
   // err.remove();
 }

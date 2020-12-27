@@ -23,18 +23,17 @@
           </div>
 
           <div class="card-body login-body">
-
             <h4 class="card-title">Login now!</h4>
             <form name="loginForm">
               <div class="col-md-12">
                 <label for="email">Email address</label>
-                <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
+                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp"
                   placeholder="Enter email" data-required="email"
                   data-invalid-message="Please provide valid email example@example.com" />
               </div>
               <div class="col-md-12">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Password"
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password"
                   data-required="password" />
               </div>
               <div class="col-12">
@@ -47,8 +46,8 @@
             <h4 class="card-title">Sign up!</h4>
             <form name="signupForm">
               <div class="col-md-12">
-                <label for="email">Email address</label>
-                <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
+                <label for="signupEmail">Email address</label>
+                <input type="email" class="form-control" id="signupEmail" aria-describedby="emailHelp"
                   placeholder="Enter email" data-required="email"
                   data-invalid-message="Please provide valid email example@example.com" />
               </div>
@@ -61,35 +60,39 @@
                 <input type="text" class="form-control" id="last-name" placeholder="Smith" data-required="last-name" />
               </div>
               <div class="col-md-12">
+                <label for="nickname">Nickname</label>
+                <input type="text" class="form-control" id="nickname" placeholder="nickname" />
+              </div>
+              <div class="col-md-12">
                 <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
 
-                <input type="radio" class="form-check-input" id="gender-male" name="gender" checked />
+                <input type="radio" class="form-check-input" id="gender-male" name="gender" value="Male" checked />
                 <label for="form-check-label">Male</label>
-                <input type="radio" class="form-check-input" id="gender-female" name="gender" />
+                <input type="radio" class="form-check-input" id="gender-female" name="gender" value="Female"/>
                 <label for="gender-female">Female </label>
               </div>
               <div class="input-group mb-3">
                 <legend class="col-form-label col-md-3 pt-0">Date of bithday</legend>
-                <input type="text" class="form-control" placeholder="Date" aria-label="Username">
-                <input type="text" class="form-control" placeholder="Month" aria-label="Username">
-                <input type="text" class="form-control" placeholder="Year" aria-label="Server">
+                <input type="text" class="form-control" placeholder="Date" aria-label="Date">
+                <input type="text" class="form-control" placeholder="Month" aria-label="Month">
+                <input type="text" class="form-control" placeholder="Year" aria-label="Year">
               </div>
               <div class="col-md-12">
                 <label for="country">Country</label>
-                <input type="text" class="form-control" id="country" placeholder="Russia" data-required="country" />
+                <input type="text" class="form-control" id="country" placeholder="Enter country" data-required="country" />
               </div>
               <div class="col-md-12">
                 <label for="city">City</label>
-                <input type="text" class="form-control" id="city" placeholder="City" data-required="city" />
+                <input type="text" class="form-control" id="city" placeholder="Enter city" data-required="city" />
               </div>
               <div class="col-md-12">
-                <label for="password">Password1</label>
-                <input type="password" class="form-control" id="password" placeholder="Password"
+                <label for="signupPassword">Password</label>
+                <input type="password" class="form-control" id="signupPassword" placeholder="Password"
                   data-required="password" />
               </div>
               <div class="col-md-12">
-                <label for="password">confirm password</label>
-                <input type="password" class="form-control" id="password" placeholder="Confirm Password"
+                <label for="confirmPassword">Confirm password</label>
+                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password"
                   data-required="password" />
               </div>
               <div class="col-12">

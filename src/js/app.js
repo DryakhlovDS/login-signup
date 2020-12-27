@@ -8,6 +8,7 @@ import ui from './config/ui.config';
 import {
   validate
 } from './helpers/validate';
+import {getDataForm} from './helpers/dataForm';
 import {
   showInputError,
   removeInputError
@@ -20,16 +21,25 @@ import {
 } from './services/auth';
 
 
-const {
-  formUI,
+const [{
+  formLogin,
   loginUI,
   passUI
-} = ui;
-const inputs = [loginUI, passUI];
+}, {
+  formSignup
+}] = ui;
 
-formUI.addEventListener('submit', e => {
+let inputs = document.querySelectorAll('input.form-control');
+console.log(inputs);
+
+formLogin.addEventListener('submit', e => {
   e.preventDefault();
-  onSubmit();
+  onSubmit(e.target);
+});
+
+formSignup.addEventListener('submit', e => {
+  e.preventDefault();
+  onSubmit(e.target);
 });
 
 inputs.forEach(input => {
@@ -38,10 +48,14 @@ inputs.forEach(input => {
   })
 })
 
-async function onSubmit() {
+async function onSubmit(formUI) {
+  inputs = Array.from(formUI.getElementsByClassName('form-control'));
+
   inputs.forEach(input => {
     removeInputError(input);
   });
+  
+  let data = getDataForm(formUI);
 
   let isValidForm = inputs.every(input => {
     const isValidInput = validate(input);
@@ -53,9 +67,11 @@ async function onSubmit() {
 
   if (!isValidForm) return;
 
+  // let data = getDataForm(formUI);
+  
   // showNotify({message: 'Login Error! Try again.', class: 'alert-danger'});
   try {
-    const res = await login(loginUI.value, passUI.value);
+    const res = await login(data);
     //show notify-success
     showNotify({
       msg: 'Login Sucsess!',
