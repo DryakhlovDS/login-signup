@@ -108,7 +108,7 @@
 }
 
 .signup-radio:checked~.signup-body {
-  height: 896px;
+  height: 911px;
   transition: all 0.5s linear 0.3s;
 }
 
@@ -156,6 +156,10 @@
 }
 
 .col-md-12 {
+  margin-bottom: 1.5rem;
+}
+
+.col-md-6 {
   margin-bottom: 1.5rem;
 }
 

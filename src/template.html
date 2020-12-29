@@ -42,58 +42,59 @@
             </form>
           </div>
           <div class="card-body signup-body">
-
             <h4 class="card-title">Sign up!</h4>
-            <form name="signupForm">
+            <form name="signupForm" class="row gx-3">
               <div class="col-md-12">
                 <label for="signupEmail">Email address</label>
-                <input type="email" class="form-control" id="signupEmail" aria-describedby="emailHelp"
+                <input type="email" class="form-control" id="signupEmail" name="email" aria-describedby="emailHelp"
                   placeholder="Enter email" data-required="email"
                   data-invalid-message="Please provide valid email example@example.com" />
               </div>
-              <div class="col-md-12">
+              <div class="col-md-6">
                 <label for="first-name">Name</label>
-                <input type="name" class="form-control" id="first-name" placeholder="Ivan" data-required="first-name" />
+                <input type="text" class="form-control" id="first-name" name="first_name" placeholder="Ivan" data-required="first-name" />
+              </div>
+              <div class="col-md-6">
+                <label for="nickname">Nickname</label>
+                <input type="text" class="form-control" id="nickname" name="nickname" placeholder="nickname" />
               </div>
               <div class="col-md-12">
                 <label for="last-name">Last name</label>
-                <input type="text" class="form-control" id="last-name" placeholder="Smith" data-required="last-name" />
+                <input type="text" class="form-control" id="last-name" name="last_name" placeholder="Smith" data-required="last-name" />
               </div>
               <div class="col-md-12">
-                <label for="nickname">Nickname</label>
-                <input type="text" class="form-control" id="nickname" placeholder="nickname" />
+                <label for="nickname">Phone</label>
+                <input type="text" class="form-control" id="phone" name="phone" placeholder="1234567890" data-required="phone" data-invalid-message="Please provide valid phone number in example 81231231212"/>
               </div>
               <div class="col-md-12">
                 <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
-
-                <input type="radio" class="form-check-input" id="gender-male" name="gender" value="Male" checked />
+                <input type="radio" class="form-check-input" id="gender-male" name="gender_orientation" value="Male" checked />
                 <label for="form-check-label">Male</label>
-                <input type="radio" class="form-check-input" id="gender-female" name="gender" value="Female"/>
+                <input type="radio" class="form-check-input" id="gender-female" name="gender_orientation" value="Female"/>
                 <label for="gender-female">Female </label>
               </div>
-              <div class="input-group mb-3">
+              <div class="input-group col-md-12">
                 <legend class="col-form-label col-md-3 pt-0">Date of bithday</legend>
-                <input type="text" class="form-control" placeholder="Date" aria-label="Date">
-                <input type="text" class="form-control" placeholder="Month" aria-label="Month">
-                <input type="text" class="form-control" placeholder="Year" aria-label="Year">
+                <input type="text" class="form-control" placeholder="Date" name="date_of_birth_day" aria-label="Day" data-required="date_of_birth_day">
+                <input type="text" class="form-control" placeholder="Month" name="date_of_birth_month" aria-label="Month" data-required="date_of_birth_month">
+                <input type="text" class="form-control" placeholder="Year" name="date_of_birth_year" aria-label="Year" data-required="date_of_birth_year">
               </div>
               <div class="col-md-12">
                 <label for="country">Country</label>
-                <input type="text" class="form-control" id="country" placeholder="Enter country" data-required="country" />
+                <input type="text" class="form-control" id="country" name="country" placeholder="Enter country" data-required="country" />
               </div>
               <div class="col-md-12">
                 <label for="city">City</label>
-                <input type="text" class="form-control" id="city" placeholder="Enter city" data-required="city" />
+                <input type="text" class="form-control" id="city" name="city" placeholder="Enter city" data-required="city" />
               </div>
               <div class="col-md-12">
                 <label for="signupPassword">Password</label>
-                <input type="password" class="form-control" id="signupPassword" placeholder="Password"
+                <input type="password" class="form-control" id="signupPassword" name="password" placeholder="Password"
                   data-required="password" />
               </div>
               <div class="col-md-12">
                 <label for="confirmPassword">Confirm password</label>
-                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password"
-                  data-required="password" />
+                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" data-invalid-message="Password not confirm"/>
               </div>
               <div class="col-12">
                 <button type="submit" class="btn btn-primary">Sign up</button>

@@ -17,7 +17,7 @@ import {
   showNotify
 } from './views/notify';
 import {
-  login
+  login, signup
 } from './services/auth';
 
 
@@ -50,15 +50,19 @@ inputs.forEach(input => {
 
 async function onSubmit(formUI) {
   inputs = Array.from(formUI.getElementsByClassName('form-control'));
-
+  
   inputs.forEach(input => {
     removeInputError(input);
   });
-  
+
   let data = getDataForm(formUI);
 
-  let isValidForm = inputs.every(input => {
-    const isValidInput = validate(input);
+  const isValidForm = inputs.every(input => {
+    let isValidInput = validate(input);
+    if (input.id === 'confirmPassword'){
+      const pass = formUI.querySelector('#signupPassword');
+      isValidInput = input.value === pass.value;
+    }
     if (!isValidInput) {
       showInputError(input);
     }
@@ -69,20 +73,24 @@ async function onSubmit(formUI) {
 
   // let data = getDataForm(formUI);
   
-  // showNotify({message: 'Login Error! Try again.', class: 'alert-danger'});
-  try {
-    const res = await login(data);
-    //show notify-success
-    showNotify({
-      msg: 'Login Sucsess!',
-    });
-  } catch (error) {
-    //show notify-alert
-    showNotify({
-      msg: 'Login Error! Try again.',
-      className: 'alert-danger',
-      // timeout: 5000,
-    });
+  if (formUI.name === 'loginForm'){
+    try {
+      const res = await login(data);
+      //show notify-success
+      showNotify({
+        msg: 'Login Sucsess!',
+      });
+    } catch (error) {
+      //show notify-alert
+      showNotify({
+        msg: 'Login Error! Try again.',
+        className: 'alert-danger',
+        // timeout: 5000,
+      });
+    }
   }
+
+
+  
   formUI.reset();
 }
