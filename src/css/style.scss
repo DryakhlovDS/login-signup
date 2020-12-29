@@ -151,6 +151,20 @@
   }
 }
 
+.autocomplete {
+  position: absolute;
+  height: auto;
+  overflow-y: auto;
+  list-style: none;
+  background: #ffffff;
+  color: #000000;
+
+  & li {
+    cursor: pointer;
+    border-bottom: 1ps solid #cecece;
+  }
+}
+
 .ml-auto {
   margin-left: auto;
 }
