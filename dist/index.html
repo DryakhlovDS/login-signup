@@ -8,39 +8,95 @@
 <link href="app.css" rel="stylesheet"></head>
 
 <body>
+
   <main>
     <section class="login d-flex">
       <div class="wrap-login d-flex align-items-center">
-        <!-- <img src="img/844579-new-splatter-backgrounds-2560x1600-for-ipad-pro.jpg" alt=""> -->
         <div class="login__form card ml-auto">
-          <div class="card-body">
-            <h4 class="card-title">Login now!</h4>
+          <input class="radio login-radio" id="login-tab" name="login-group" type="radio" checked>
+          <input class="radio signup-radio" id="signup-tab" name="login-group" type="radio" >
 
+          <div class="card-header d-flex">
+            <label class="tab login-tab" for="login-tab">Login</label>
+            <label class="tab signup-tab" for="signup-tab">Sign Up</label>
+          </div>
+
+          <div class="card-body login-body">
+            <h4 class="card-title">Login now!</h4>
             <form name="loginForm">
               <div class="col-md-12">
                 <label for="email">Email address</label>
-                <input
-                  type="email"
-                  class="form-control"
-                  id="email"
-                  aria-describedby="emailHelp"
-                  placeholder="Enter email"
-                  data-required="email"
-                  data-invalid-message="Please provide valid email example@example.com"
-                />
+                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp"
+                  placeholder="Enter email" data-required="email"
+                  data-invalid-message="Please provide valid email example@example.com" />
               </div>
               <div class="col-md-12">
                 <label for="password">Password</label>
-                <input
-                  type="password"
-                  class="form-control"
-                  id="password"
-                  placeholder="Password"
-                  data-required="password"
-                />
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password"
+                  data-required="password" />
               </div>
               <div class="col-12">
                 <button type="submit" class="btn btn-primary">Sign in</button>
+              </div>
+            </form>
+          </div>
+          <div class="card-body signup-body">
+            <h4 class="card-title">Sign up!</h4>
+            <form name="signupForm" class="row gx-3">
+              <div class="col-md-12">
+                <label for="signupEmail">Email address</label>
+                <input type="email" class="form-control" id="signupEmail" name="email" aria-describedby="emailHelp"
+                  placeholder="Enter email" data-required="email"
+                  data-invalid-message="Please provide valid email example@example.com" />
+              </div>
+              <div class="col-md-6">
+                <label for="first-name">Name</label>
+                <input type="text" class="form-control" id="first-name" name="first_name" placeholder="Ivan" data-required="first-name" />
+              </div>
+              <div class="col-md-6">
+                <label for="nickname">Nickname</label>
+                <input type="text" class="form-control" id="nickname" name="nickname" placeholder="nickname" />
+              </div>
+              <div class="col-md-12">
+                <label for="last-name">Last name</label>
+                <input type="text" class="form-control" id="last-name" name="last_name" placeholder="Smith" data-required="last-name" />
+              </div>
+              <div class="col-md-12">
+                <label for="phone">Phone</label>
+                <input type="text" class="form-control" id="phone" name="phone" placeholder="1234567890" data-required="phone" data-invalid-message="Please provide valid phone number in example 81231231212"/>
+              </div>
+              <div class="col-md-12">
+                <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
+                <input type="radio" class="form-check-input" id="gender-male" name="gender_orientation" value="Male" checked />
+                <label for="form-check-label">Male</label>
+                <input type="radio" class="form-check-input" id="gender-female" name="gender_orientation" value="Female"/>
+                <label for="gender-female">Female </label>
+              </div>
+              <div class="input-group col-md-12">
+                <legend class="col-form-label col-md-3 pt-0">Date of bithday</legend>
+                <input type="text" class="form-control" placeholder="Date" name="date_of_birth_day" aria-label="Day" data-required="date_of_birth_day" data-invalid-message="Please provide valid day: 01 - 31.">
+                <input type="text" class="form-control" placeholder="Month" name="date_of_birth_month" aria-label="Month" data-required="date_of_birth_month" data-invalid-message="Please provide valid month: 01 - 12.">
+                <input type="text" class="form-control" placeholder="Year" name="date_of_birth_year" aria-label="Year" data-required="date_of_birth_year" data-invalid-message="Please provide valid year: 1900 - p.t.">
+              </div>
+              <div class="col-md-12">
+                <label for="country">Country</label>
+                <input type="text" class="form-control" id="country" name="country" placeholder="Enter country" data-required="country" />
+              </div>
+              <div class="col-md-12">
+                <label for="city">City</label>
+                <input type="text" class="form-control" id="city" name="city" placeholder="Enter city" data-required="city" disabled/>
+              </div>
+              <div class="col-md-12">
+                <label for="signupPassword">Password</label>
+                <input type="password" class="form-control" id="signupPassword" name="password" placeholder="Password"
+                  data-required="password" />
+              </div>
+              <div class="col-md-12">
+                <label for="confirmPassword">Confirm password</label>
+                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" data-invalid-message="Password not confirm"/>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn btn-primary">Sign up</button>
               </div>
             </form>
           </div>
@@ -49,9 +105,11 @@
       <div class="wrap-intro d-flex align-items-center">
         <div class="login__intro">
           <h1>Welcom</h1>
-          <p>Сказки начинаются не одинаково. Особенно разнообразны начала авторских сказок. Однако можно проследить определенную тенденцию в написании зачинов. Возможно, корни многих из них уходят в известные всем слова «жили-были…».</p>
+          <p>Сказки начинаются не одинаково. Особенно разнообразны начала авторских сказок. Однако можно проследить
+            определенную тенденцию в написании зачинов. Возможно, корни многих из них уходят в известные всем слова
+            «жили-были…».</p>
         </div>
-        
+
       </div>
     </section>
   </main>
