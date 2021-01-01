@@ -6,21 +6,27 @@ function inputMessageTemplate(msg) {
 `
 }
 
-function creatList({left, top, width, height}, vh){
-  const ul = document.createElement('ul');
-  ul.classList.add('autocomplete');
+function creatList({
+  left,
+  top,
+  width,
+  height
+}, vh, elementId) {
+  const ul = document.createElement('div');
+  ul.classList.add('autocomplete', 'list-group');
+  ul.dataset.location = elementId;
   const listTop = top + height + 5;
   ul.style = `left: ${left}px; top: ${listTop}px; width: ${width}px; max-height: ${vh - listTop - 20}px;`
   return ul;
 }
 
-function creatListElement(text){
-return `
-<li>${text}</li>
+function creatListElement(text) {
+  return `
+<a href="#" class="list-group-item list-group-item-action">${text}</a>
 `
 }
 
-function removeElement(elem){
+function removeElement(elem) {
   const parent = elem.parentElement;
   parent.removeChild(elem);
 }
@@ -41,7 +47,7 @@ export function showInputError(el) {
 /**
  * @param {HTMLInputElement}
  */
-export function removeInputError(el){
+export function removeInputError(el) {
   const parent = el.parentElement;
   const err = parent.querySelector('.invalid-feedback');
 
@@ -58,31 +64,31 @@ export function removeInputError(el){
  * @param {HTMLElement} el 
  * @param {massive} list 
  */
-export function showList(el, list){
-//найти координаты элемента
-const coords = el.getBoundingClientRect();
-const vh = window.innerHeight;
+export function showList(el, list) {
+  //найти координаты элемента
+  const coords = el.getBoundingClientRect();
+  const vh = window.innerHeight;
 
-//сформировать список из переменной list
-const ul = creatList(coords, vh);
+  //сформировать список из переменной list
+  let ul = creatList(coords, vh, el.id);
 
-list.forEach(str => {
-  const li = creatListElement(str);
-  ul.insertAdjacentHTML('beforeend', li);
-});
+  list.forEach(str => {
+    const li = creatListElement(str);
+    ul.insertAdjacentHTML('beforeend', li);
+  });
 
-//добавить на экран в абсолюте список
-deleteAutocomplete();
+  //добавить на экран в абсолюте список
+  deleteAutocomplete();
 
-document.body.appendChild(ul);
+  document.body.appendChild(ul);
 }
 
 /**
  * 
  */
-export function deleteAutocomplete(){
-  const autocomplete = document.querySelector('ul.autocomplete');
-  if (autocomplete){
+export function deleteAutocomplete() {
+  const autocomplete = document.querySelector('div.autocomplete');
+  if (autocomplete) {
     removeElement(autocomplete);
   }
 }

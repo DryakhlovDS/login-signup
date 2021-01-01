@@ -37,6 +37,7 @@ function closeNotify(index) {
     console.warn('Alert not found');
     return;
   }
+  
   hideAlert(alert);
   setTimeout(() => {
     container.removeChild(alert);

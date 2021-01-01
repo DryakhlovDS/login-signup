@@ -156,13 +156,10 @@
   height: auto;
   overflow-y: auto;
   list-style: none;
+  text-transform: capitalize;
   background: #ffffff;
   color: #000000;
 
-  & li {
-    cursor: pointer;
-    border-bottom: 1ps solid #cecece;
-  }
 }
 
 .ml-auto {
@@ -192,31 +189,5 @@
     background-color: #f77440;
     border-color: #fcdca1;
     box-shadow: 0 0 0 0.25rem #f7744080;
-  }
-}
-
-@keyframes hide {
-  10% {
-    height: auto;
-  }
-
-  50% {
-    height: 40px;
-  }
-
-  90% {
-    height: 0;
-  }
-}
-
-@keyframes show {
-  10% {
-    height: 0;
-  }
-
-  50% {}
-
-  90% {
-    height: auto;
   }
 }

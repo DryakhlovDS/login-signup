@@ -12,6 +12,9 @@ import {
   getDataForm
 } from './helpers/dataForm';
 import {
+  capitalize
+} from './helpers/capitalize';
+import {
   showInputError,
   removeInputError,
   showList,
@@ -39,12 +42,12 @@ document.addEventListener('DOMContentLoaded', e => {
   }] = ui;
 
   let inputs = document.querySelectorAll('input.form-control');
-  let countries, cities, MassiveCountries;
+  let countries, cities, massiveCountries, massiveCities;
   const inputCountry = document.querySelector('#country');
   const inputCity = document.querySelector('#city');
 
 
-  initAc();
+  initCountry();
 
 
   formLogin.addEventListener('submit', e => {
@@ -64,15 +67,23 @@ document.addEventListener('DOMContentLoaded', e => {
   })
 
   inputCountry.addEventListener('input', e => {
-    const str = e.target.value;
-    console.log(str);
-    if (!str) {
-      deleteAutocomplete();
-      return;
-    }
-    const country = MassiveCountries.filter(item => item.includes(str));
-    showList(e.target, country);
+    onInput(e.target, massiveCountries);
+    isValueCorrect(e.target.value, Object.keys(countries));
 
+  });
+
+  inputCity.addEventListener('input', e => {
+    onInput(e.target, massiveCities);
+  });
+
+  document.body.addEventListener('click', e => {
+
+    if (e.target.classList.contains('list-group-item-action')) {
+      e.preventDefault();
+      const input = onClickList(e.target);
+      if (input === inputCountry) isValueCorrect(input.value, Object.keys(countries));
+      deleteAutocomplete();
+    }
   });
 
   async function onSubmit(formUI) {
@@ -81,8 +92,6 @@ document.addEventListener('DOMContentLoaded', e => {
     inputs.forEach(input => {
       removeInputError(input);
     });
-
-    let data = getDataForm(formUI);
 
     const isValidForm = inputs.every(input => {
       let isValidInput = validate(input);
@@ -98,7 +107,7 @@ document.addEventListener('DOMContentLoaded', e => {
 
     if (!isValidForm) return;
 
-    // let data = getDataForm(formUI);
+    let data = getDataForm(formUI);
 
     if (formUI.name === 'loginForm') {
       try {
@@ -106,6 +115,7 @@ document.addEventListener('DOMContentLoaded', e => {
         //show notify-success
         showNotify({
           msg: 'Login Sucsess!',
+          // timeout: 10000,
         });
       } catch (error) {
         //show notify-alert
@@ -117,20 +127,83 @@ document.addEventListener('DOMContentLoaded', e => {
       }
     }
 
-
+    if (formUI.name === 'signupForm') {
+      try {
+        console.log(data);
+        const res = await signup(data);
+        console.log(res);
+        //show notify-success
+        showNotify({
+          msg: res.message,
+          timeout: 15000,
+        });
+      } catch (error) {
+        //show notify-alert
+        showNotify({
+          msg: 'Sign up error! Try again.',
+          className: 'alert-danger',
+          // timeout: 5000,
+        });
+      }
+    }
 
     formUI.reset();
+    inputCity.disabled = true;
   }
 
-  async function initAc() {
+  async function initCountry() {
     countries = await location();
+    massiveCountries = Object.keys(countries).reduce((acc, string) => {
+      acc.push(string.toLowerCase());
+      return acc;
+    }, []);
 
+  }
 
-    MassiveCountries = Object.keys(countries);
-    console.log(MassiveCountries);
+  async function initCity(code) {
+    cities = await location(code);
+    massiveCities = Object.values(cities).reduce((acc, string) => {
+      acc.push(string.toLowerCase());
+      return acc;
+    }, []);
+  }
 
-    cities = await location(120);
-    // console.log(cities);
+  function onInput(input, fullList) {
+    const str = input.value.toLowerCase();
+
+    if (!str) {
+      deleteAutocomplete();
+      return;
+    }
+
+    const country = fullList.filter(item => item.includes(str));
+    showList(input, country);
+  }
+
+  function onClickList(target) {
+    const text = capitalize(target.textContent, true);
+    const parent = target.parentElement;
+    const inputId = parent.dataset.location;
+    const input = document.querySelector(`#${inputId}`);
+    input.value = text;
+    return input;
+  }
+
+  function isValueCorrect(value, countryList) {
+    const cityDisabled = searchValue(value, countryList);
+    inputCity.disabled = cityDisabled;
+    inputCity.value = '';
+    if (!cityDisabled) {
+      const code = countries[value].code;
+      initCity(code);
+    }
+
+  }
+
+  function searchValue(value, massive) {
+    if (!value) return true;
+    const res = massive.find(country => country === value);
+    return !res;
   }
 
 });

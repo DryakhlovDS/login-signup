@@ -11,6 +11,5 @@ export function getDataForm(form) {
       [pair[0]]: pair[1]
     });
   }
-  console.log(formData);
   return formData;
 }

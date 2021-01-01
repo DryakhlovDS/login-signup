@@ -14,6 +14,7 @@ export async function login(data) {
     return Promise.reject(error);
   }
 }
+
 /**
  * Function for sign Up, make sign uo in api
  * @param {object} data 

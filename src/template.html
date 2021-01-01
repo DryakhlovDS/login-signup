@@ -63,7 +63,7 @@
                 <input type="text" class="form-control" id="last-name" name="last_name" placeholder="Smith" data-required="last-name" />
               </div>
               <div class="col-md-12">
-                <label for="nickname">Phone</label>
+                <label for="phone">Phone</label>
                 <input type="text" class="form-control" id="phone" name="phone" placeholder="1234567890" data-required="phone" data-invalid-message="Please provide valid phone number in example 81231231212"/>
               </div>
               <div class="col-md-12">
@@ -75,9 +75,9 @@
               </div>
               <div class="input-group col-md-12">
                 <legend class="col-form-label col-md-3 pt-0">Date of bithday</legend>
-                <input type="text" class="form-control" placeholder="Date" name="date_of_birth_day" aria-label="Day" data-required="date_of_birth_day">
-                <input type="text" class="form-control" placeholder="Month" name="date_of_birth_month" aria-label="Month" data-required="date_of_birth_month">
-                <input type="text" class="form-control" placeholder="Year" name="date_of_birth_year" aria-label="Year" data-required="date_of_birth_year">
+                <input type="text" class="form-control" placeholder="Date" name="date_of_birth_day" aria-label="Day" data-required="date_of_birth_day" data-invalid-message="Please provide valid day: 01 - 31.">
+                <input type="text" class="form-control" placeholder="Month" name="date_of_birth_month" aria-label="Month" data-required="date_of_birth_month" data-invalid-message="Please provide valid month: 01 - 12.">
+                <input type="text" class="form-control" placeholder="Year" name="date_of_birth_year" aria-label="Year" data-required="date_of_birth_year" data-invalid-message="Please provide valid year: 1900 - p.t.">
               </div>
               <div class="col-md-12">
                 <label for="country">Country</label>
