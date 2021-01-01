@@ -2,11 +2,11 @@ import axios from '../plugins/axios';
 
 /**
  * Function login. make login in api
- * @param {object} data 
+ * @param {object} data
  */
 export async function login(data) {
   try {
-    const response = await axios.post(`/auth/login`, JSON.stringify(data) );
+    const response = await axios.post('/auth/login', JSON.stringify(data));
 
     return response;
   } catch (error) {
@@ -17,11 +17,11 @@ export async function login(data) {
 
 /**
  * Function for sign Up, make sign uo in api
- * @param {object} data 
+ * @param {object} data
  */
 export async function signup(data) {
   try {
-    const response = await axios.post(`/auth/signup`,JSON.stringify(data) );
+    const response = await axios.post('/auth/signup', JSON.stringify(data));
 
     return response;
   } catch (error) {

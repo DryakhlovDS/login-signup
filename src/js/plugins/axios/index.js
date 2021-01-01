@@ -5,8 +5,8 @@ import interceptors from './intercepters';
 const instance = axios.create({
   baseURL: api.url,
   headers: {
-      'Content-type': 'application/json'
-    }
+    'Content-type': 'application/json',
+  },
 });
 
 interceptors(instance);

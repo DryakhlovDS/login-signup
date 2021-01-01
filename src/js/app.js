@@ -1,18 +1,18 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
-import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap/dist/css/bootstrap.css';
 import '../css/style.scss';
 
 import ui from './config/ui.config';
 import {
-  validate
+  validate,
 } from './helpers/validate';
 import {
-  getDataForm
+  getDataForm,
 } from './helpers/dataForm';
 import {
-  capitalize
+  capitalize,
 } from './helpers/capitalize';
 import {
   showInputError,
@@ -21,79 +21,37 @@ import {
   deleteAutocomplete,
 } from './views/form';
 import {
-  showNotify
+  showNotify,
 } from './views/notify';
 import {
   login,
-  signup
+  signup,
 } from './services/auth';
 import {
-  location
+  location,
 } from './services/location';
 
-document.addEventListener('DOMContentLoaded', e => {
-
+document.addEventListener('DOMContentLoaded', () => {
   const [{
     formLogin,
-    loginUI,
-    passUI
   }, {
-    formSignup
+    formSignup,
   }] = ui;
 
   let inputs = document.querySelectorAll('input.form-control');
-  let countries, cities, massiveCountries, massiveCities;
+  let countries; let cities; let massiveCountries; let
+    massiveCities;
   const inputCountry = document.querySelector('#country');
   const inputCity = document.querySelector('#city');
-
-
-  initCountry();
-
-
-  formLogin.addEventListener('submit', e => {
-    e.preventDefault();
-    onSubmit(e.target);
-  });
-
-  formSignup.addEventListener('submit', e => {
-    e.preventDefault();
-    onSubmit(e.target);
-  });
-
-  inputs.forEach(input => {
-    input.addEventListener('focus', () => {
-      removeInputError(input);
-    })
-  })
-
-  inputCountry.addEventListener('input', e => {
-    onInput(e.target, massiveCountries);
-    isValueCorrect(e.target.value, Object.keys(countries));
-
-  });
-
-  inputCity.addEventListener('input', e => {
-    onInput(e.target, massiveCities);
-  });
-
-  document.body.addEventListener('click', e => {
-
-    if (e.target.classList.contains('list-group-item-action')) {
-      e.preventDefault();
-      const input = onClickList(e.target);
-      if (input === inputCountry) isValueCorrect(input.value, Object.keys(countries));
-      deleteAutocomplete();
-    }
-  });
 
   async function onSubmit(formUI) {
     inputs = Array.from(formUI.getElementsByClassName('form-control'));
 
-    inputs.forEach(input => {
+    inputs.forEach((input) => {
       removeInputError(input);
     });
 
-    const isValidForm = inputs.every(input => {
+    const isValidForm = inputs.every((input) => {
       let isValidInput = validate(input);
       if (input.id === 'confirmPassword') {
         const pass = formUI.querySelector('#signupPassword');
@@ -107,18 +65,18 @@ document.addEventListener('DOMContentLoaded', e => {
 
     if (!isValidForm) return;
 
-    let data = getDataForm(formUI);
+    const data = getDataForm(formUI);
 
     if (formUI.name === 'loginForm') {
       try {
-        const res = await login(data);
-        //show notify-success
+        await login(data);
+        // show notify-success
         showNotify({
           msg: 'Login Sucsess!',
           // timeout: 10000,
         });
       } catch (error) {
-        //show notify-alert
+        // show notify-alert
         showNotify({
           msg: 'Login Error! Try again.',
           className: 'alert-danger',
@@ -129,16 +87,14 @@ document.addEventListener('DOMContentLoaded', e => {
 
     if (formUI.name === 'signupForm') {
       try {
-        console.log(data);
         const res = await signup(data);
-        console.log(res);
-        //show notify-success
+        // show notify-success
         showNotify({
           msg: res.message,
           timeout: 15000,
         });
       } catch (error) {
-        //show notify-alert
+        // show notify-alert
         showNotify({
           msg: 'Sign up error! Try again.',
           className: 'alert-danger',
@@ -157,7 +113,6 @@ document.addEventListener('DOMContentLoaded', e => {
       acc.push(string.toLowerCase());
       return acc;
     }, []);
-
   }
 
   async function initCity(code) {
@@ -176,7 +131,7 @@ document.addEventListener('DOMContentLoaded', e => {
       return;
     }
 
-    const country = fullList.filter(item => item.includes(str));
+    const country = fullList.filter((item) => item.includes(str));
     showList(input, country);
   }
 
@@ -189,21 +144,57 @@ document.addEventListener('DOMContentLoaded', e => {
     return input;
   }
 
+  function searchValue(value, massive) {
+    if (!value) return true;
+    const res = massive.find((country) => country === value);
+    return !res;
+  }
+
   function isValueCorrect(value, countryList) {
     const cityDisabled = searchValue(value, countryList);
     inputCity.disabled = cityDisabled;
     inputCity.value = '';
     if (!cityDisabled) {
-      const code = countries[value].code;
+      const { code } = countries[value];
       initCity(code);
     }
-
   }
 
-  function searchValue(value, massive) {
-    if (!value) return true;
-    const res = massive.find(country => country === value);
-    return !res;
-  }
+  initCountry();
 
+  formLogin.addEventListener('submit', (e) => {
+    e.preventDefault();
+    onSubmit(e.target);
+  });
+
+  formSignup.addEventListener('submit', (e) => {
+    e.preventDefault();
+    onSubmit(e.target);
+  });
+
+  inputs.forEach((input) => {
+    input.addEventListener('focus', () => {
+      removeInputError(input);
+    });
+  });
+
+  inputCountry.addEventListener('input', (e) => {
+    onInput(e.target, massiveCountries);
+    isValueCorrect(e.target.value, Object.keys(countries));
+  });
+
+  inputCity.addEventListener('input', (e) => {
+    onInput(e.target, massiveCities);
+  });
+
+  document.body.addEventListener('click', (e) => {
+    if (e.target.classList.contains('list-group-item-action')) {
+      e.preventDefault();
+      const input = onClickList(e.target);
+      if (input === inputCountry) isValueCorrect(input.value, Object.keys(countries));
+      deleteAutocomplete();
+    }
+  });
+
+  
 });

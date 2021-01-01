@@ -4,7 +4,7 @@ function creatContainer() {
 }
 
 function containerTemplate() {
-  return `<div class="alert-container"></div>`
+  return `<div class="alert-container"></div>`;
 }
 
 function getContainer() {
@@ -16,7 +16,7 @@ function creatAlert(msg, className, index) {
 <div class="alert ${className}" data-index="${index}" role="alert">
       ${msg}
     </div>
-`
+`;
 }
 
 function insertAlert(alert) {
@@ -37,14 +37,13 @@ function closeNotify(index) {
     console.warn('Alert not found');
     return;
   }
-  
+
   hideAlert(alert);
   setTimeout(() => {
     container.removeChild(alert);
     if (getAlerts()) return;
     document.body.removeChild(container);
-  }, 1000)
-
+  }, 1000);
 }
 
 function hideAlert(elem) {
@@ -56,7 +55,7 @@ function getAlerts() {
 }
 
 /**
- * 
+ *
  * @param {Object} param
  * @param {string} param.msg
  * @param {string} param.className
@@ -65,7 +64,7 @@ function getAlerts() {
 export function showNotify({
   msg = 'Some text',
   className = 'alert-success',
-  timeout = 2500
+  timeout = 2500,
 } = {}) {
   if (!getContainer()) {
     creatContainer();
