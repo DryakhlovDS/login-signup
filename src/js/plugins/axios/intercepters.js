@@ -26,7 +26,7 @@ function setToken(req) {
   return req;
 }
 
-export default function (axios) {
+export default function interceptors(axios) {
   axios.interceptors.request.use(setToken);
   axios.interceptors.response.use(getToken);
   axios.interceptors.response.use(clearResponse, onError);

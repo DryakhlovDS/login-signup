@@ -1,10 +1,10 @@
+function containerTemplate() {
+  return '<div class="alert-container"></div>';
+}
+
 function creatContainer() {
   const container = containerTemplate();
   document.body.insertAdjacentHTML('afterbegin', container);
-}
-
-function containerTemplate() {
-  return `<div class="alert-container"></div>`;
 }
 
 function getContainer() {
@@ -17,6 +17,14 @@ function creatAlert(msg, className, index) {
       ${msg}
     </div>
 `;
+}
+
+function getAlerts() {
+  return document.querySelectorAll('.alert').length;
+}
+
+function hideAlert(element) {
+  element.style.opacity = 0;
 }
 
 function insertAlert(alert) {
@@ -34,6 +42,7 @@ function closeNotify(index) {
   }
 
   if (!alert) {
+    // eslint-disable-next-line no-console
     console.warn('Alert not found');
     return;
   }
@@ -46,30 +55,22 @@ function closeNotify(index) {
   }, 1000);
 }
 
-function hideAlert(elem) {
-  elem.style.opacity = 0;
-}
-
-function getAlerts() {
-  return document.querySelectorAll('.alert').length;
-}
-
 /**
  *
  * @param {Object} param
  * @param {string} param.msg
  * @param {string} param.className
- * @param {number} param.timeout
+ * @param {number} param.time
  */
-export function showNotify({
+export default function showNotify({
   msg = 'Some text',
   className = 'alert-success',
-  timeout = 2500,
+  time = 2500,
 } = {}) {
   if (!getContainer()) {
     creatContainer();
   }
-  timeout -= 1000;
+  let timeout = time - 1000;
   if (timeout < 0) timeout = 0;
   const index = getAlerts();
   const alert = creatAlert(msg, className, index);

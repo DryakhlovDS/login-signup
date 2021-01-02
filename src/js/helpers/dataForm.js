@@ -2,7 +2,7 @@
  * Function translate FormData into object
  * @param {HTMLElement} form
  */
-export function getDataForm(form) {
+export default function getDataForm(form) {
   const data = new FormData(form);
   const formData = {};
 
@@ -11,5 +11,6 @@ export function getDataForm(form) {
       [pair[0]]: pair[1],
     });
   }
+
   return formData;
 }

@@ -10,6 +10,7 @@ export async function login(data) {
 
     return response;
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log(error);
     return Promise.reject(error);
   }
@@ -25,6 +26,7 @@ export async function signup(data) {
 
     return response;
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log(error);
     return Promise.reject(error);
   }

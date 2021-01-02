@@ -5,31 +5,21 @@ import 'bootstrap/dist/css/bootstrap.css';
 import '../css/style.scss';
 
 import ui from './config/ui.config';
-import {
-  validate,
-} from './helpers/validate';
-import {
-  getDataForm,
-} from './helpers/dataForm';
-import {
-  capitalize,
-} from './helpers/capitalize';
+import validate from './helpers/validate';
+import getDataForm from './helpers/dataForm';
+import capitalize from './helpers/capitalize';
 import {
   showInputError,
   removeInputError,
   showList,
   deleteAutocomplete,
 } from './views/form';
-import {
-  showNotify,
-} from './views/notify';
+import showNotify from './views/notify';
 import {
   login,
   signup,
 } from './services/auth';
-import {
-  location,
-} from './services/location';
+import location from './services/location';
 
 document.addEventListener('DOMContentLoaded', () => {
   const [{
@@ -195,6 +185,4 @@ document.addEventListener('DOMContentLoaded', () => {
       deleteAutocomplete();
     }
   });
-
-  
 });

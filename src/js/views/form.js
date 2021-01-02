@@ -45,6 +45,16 @@ export function showInputError(el) {
 }
 
 /**
+ * Function delete element has classList 'autocomplete'
+ */
+export function deleteAutocomplete() {
+  const autocomplete = document.querySelector('div.autocomplete');
+  if (autocomplete) {
+    removeElement(autocomplete);
+  }
+}
+
+/**
  * @param {HTMLInputElement}
  */
 export function removeInputError(el) {
@@ -81,14 +91,4 @@ export function showList(el, list) {
   deleteAutocomplete();
 
   document.body.appendChild(ul);
-}
-
-/**
- *
- */
-export function deleteAutocomplete() {
-  const autocomplete = document.querySelector('div.autocomplete');
-  if (autocomplete) {
-    removeElement(autocomplete);
-  }
 }
