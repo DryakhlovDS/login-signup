@@ -111,12 +111,6 @@ module.exports = {
     port: 9000
   },
 
-  // resolve: {
-  //   alias: {
-  //     "Images" : path.resolve(__dirname, "img"),
-  //   },
-  // },
-
   plugins: [
     new MiniCssExtractPlugin(),
     new webpack.ProgressPlugin(),

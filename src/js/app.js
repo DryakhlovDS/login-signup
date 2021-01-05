@@ -29,8 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }] = ui;
 
   let inputs = document.querySelectorAll('input.form-control');
-  let countries; let cities; let massiveCountries; let
-    massiveCities;
+  let countries;
+  let cities;
+  let massiveCountries;
+  let massiveCities;
   const inputCountry = document.querySelector('#country');
   const inputCity = document.querySelector('#city');
 

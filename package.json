@@ -7,7 +7,7 @@
     "build": "webpack",
     "dev": "webpack serve",
     "lint": "eslint ./src",
-    "lint:fix": "eslint ./src --fix"
+    "lint:fix": "eslint ./src --fix --color"
   },
   "author": "DS",
   "license": "ISC",
@@ -30,6 +30,8 @@
     "eslint-plugin-prettier": "^3.3.0",
     "html-loader": "^1.3.2",
     "html-webpack-plugin": "^4.5.0",
+    "husky": "^4.3.6",
+    "lint-staged": "^10.5.3",
     "mini-css-extract-plugin": "^1.3.3",
     "node-sass": "^5.0.0",
     "prettier": "^2.2.1",
@@ -37,5 +39,16 @@
     "webpack": "^5.11.0",
     "webpack-cli": "^4.2.0",
     "webpack-dev-server": "^3.11.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-satged": {
+    "*.js":[
+      "npm run lint:fix",
+      "git add"
+    ]
   }
 }
