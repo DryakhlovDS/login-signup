@@ -26,7 +26,6 @@ const sass = require('node-sass');
 const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CssUrlRelativePlugin = require('css-url-relative-plugin');
 
 
 module.exports = {
@@ -38,30 +37,23 @@ module.exports = {
 
   output: {
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '',
     filename: '[name].js',
-    // assetModuleFilename: 'asset/[name]',
   },
 
   experiments: {
     asset: true
   },
+
   context: path.resolve(__dirname, 'src'),
+
   module: {
     rules: [
-      // {
-      //   test: /\.html$/i,
-      //   loader: 'html-loader',
-      //   options:{
-      //     attributes: {
-      //       root: '.',
-      //     },
-      //   },
-        
-      // },
       {
         test: /.(scss|css)$/,
 
-        use: [MiniCssExtractPlugin.loader,
+        use: [
+          MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
             options: {
@@ -70,18 +62,12 @@ module.exports = {
               modules: {
                 auto: true
               },
-              url: false,
-            }
+              url: true,
+              }
           },
-          // {
-          //   loader: 'resolve-url-loader',
-          // },
           {
             loader: "sass-loader",
-            options: {
-              sourceMap: true,
-            }
-          }
+          },
         ]
       },
       {
@@ -95,15 +81,7 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: ['babel-loader'],
-    },
-      // {
-      //   test: /\.js$/i,
-      //   loader: 'import-loader',
-      // },
-      // {
-      //   test: /\.js$/i,
-      //   loader: 'export-loader',
-      // }
+    }
     ]
   },
 
@@ -135,20 +113,15 @@ module.exports = {
 
   // resolve: {
   //   alias: {
-  //     "/img/[name][ext]": path.resolve(__dirname, "/img/[name][ext]"),
+  //     "Images" : path.resolve(__dirname, "img"),
   //   },
   // },
 
   plugins: [
     new MiniCssExtractPlugin(),
-    // new CssUrlRelativePlugin(
-    //   {
-    //     sourceMap: true,
-    //     url: true,
-    //   }
-    // ),
     new webpack.ProgressPlugin(),
     new webpack.HotModuleReplacementPlugin(),
+    
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, './src/template.html'),
       filename: 'index.html'
