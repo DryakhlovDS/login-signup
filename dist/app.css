@@ -7805,10 +7805,15 @@ textarea.form-control-lg {
   box-sizing: border-box; }
 
 .login {
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   background: url(img/844579-new-splatter-backgrounds-2560x1600-for-ipad-pro.jpg) center no-repeat border-box;
+  background-size: cover;
   overflow: hidden; }
+  @media screen and (max-width: 768px) {
+    .login {
+      height: auto;
+      overflow-y: auto; } }
   .login .card {
     position: relative; }
     .login .card-header {
@@ -7819,14 +7824,25 @@ textarea.form-control-lg {
       z-index: 5; }
   .login .wrap-login {
     width: 60%; }
+    @media screen and (max-width: 768px) {
+      .login .wrap-login {
+        width: 100%;
+        align-items: flex-start !important; } }
   .login .wrap-intro {
     width: 40%;
     background: linear-gradient(20deg, #fcdca1d0, #f77440e0); }
+    @media screen and (max-width: 768px) {
+      .login .wrap-intro {
+        display: none !important; } }
   .login__form {
-    margin: 2rem;
+    margin: 1rem;
+    margin-right: 2rem;
     width: 90%;
     max-width: 500px;
     transition: all 0.3s linear; }
+    @media screen and (max-width: 768px) {
+      .login__form {
+        margin-right: auto; } }
   .login__intro {
     margin: 1rem;
     padding: 1rem;
@@ -7883,6 +7899,12 @@ textarea.form-control-lg {
 .signup-radio:checked ~ .signup-body {
   height: 911px;
   transition: all 0.5s linear 0.3s; }
+  @media screen and (max-width: 768px) {
+    .signup-radio:checked ~ .signup-body {
+      height: 1027px; } }
+  @media screen and (max-width: 425px) {
+    .signup-radio:checked ~ .signup-body {
+      height: 1071px; } }
 
 .login-radio:checked ~ .card-header > .login-tab,
 .signup-radio:checked ~ .card-header > .signup-tab {

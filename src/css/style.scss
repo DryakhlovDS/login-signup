@@ -3,10 +3,17 @@
 }
 
 .login {
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
-  background: url('../img/844579-new-splatter-backgrounds-2560x1600-for-ipad-pro.jpg') center no-repeat border-box;
+  background: url('../img/844579-new-splatter-backgrounds-2560x1600-for-ipad-pro.jpg')
+    center no-repeat border-box;
+  background-size: cover;
   overflow: hidden;
+
+  @media screen and (max-width: 768px) {
+    height: auto;
+    overflow-y: auto;
+  }
 
   .card {
     position: relative;
@@ -22,21 +29,32 @@
 
   & .wrap-login {
     width: 60%;
-
+    @media screen and (max-width: 768px) {
+      width: 100%;
+      align-items: flex-start !important;
+    }
   }
 
   & .wrap-intro {
     width: 40%;
     background: linear-gradient(20deg, #fcdca1d0, #f77440e0);
 
+    @media screen and (max-width: 768px) {
+      display: none !important;
+    }
   }
 
   &__form {
     // display: block;
-    margin: 2rem;
+    margin: 1rem;
+    margin-right: 2rem;
     width: 90%;
     max-width: 500px;
     transition: all 0.3s linear;
+
+    @media screen and (max-width: 768px) {
+      margin-right: auto;
+    }
   }
 
   &__intro {
@@ -48,7 +66,6 @@
     font-size: 18px;
     border-radius: 16px;
     color: #ffffff;
-
 
     & h1 {
       font-size: 3rem;
@@ -70,8 +87,6 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
   cursor: pointer;
   transition: all 0.2s linear;
-  ;
-
   &:hover {
     border-top: 3px solid #fcdca1d0;
     color: #f77440;
@@ -96,24 +111,31 @@
   transition: all 0.5s linear;
 }
 
-.login-radio:checked~.login-body,
-.signup-radio:checked~.signup-body {
+.login-radio:checked ~ .login-body,
+.signup-radio:checked ~ .signup-body {
   display: block;
   padding: 1rem 1rem;
 }
 
-.login-radio:checked~.login-body {
+.login-radio:checked ~ .login-body {
   height: 278px;
   transition: all 0.3s linear 0.5s;
 }
 
-.signup-radio:checked~.signup-body {
+.signup-radio:checked ~ .signup-body {
   height: 911px;
   transition: all 0.5s linear 0.3s;
+
+  @media screen and (max-width: 768px) {
+    height: 1027px;
+  }
+  @media screen and (max-width: 425px) {
+    height: 1071px;
+  }
 }
 
-.login-radio:checked~.card-header>.login-tab,
-.signup-radio:checked~.card-header>.signup-tab {
+.login-radio:checked ~ .card-header > .login-tab,
+.signup-radio:checked ~ .card-header > .signup-tab {
   background: #ffffff;
   border-bottom: none;
   border-top: 3px solid #ffffff;
@@ -129,7 +151,6 @@
 
   &:first-child {
     border-left: none;
-
   }
 
   &:last-child {
@@ -159,7 +180,6 @@
   text-transform: capitalize;
   background: #ffffff;
   color: #000000;
-
 }
 
 .ml-auto {
